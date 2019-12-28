@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD51BA0B3EB66220D8317598 /* libPods-ConversionCurrency.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2D05DAB9DB1234D02D4FFB /* libPods-ConversionCurrency.a */; };
+		FAB1778323B7087A00EFE569 /* RateCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1778223B7087A00EFE569 /* RateCodable.swift */; };
 		FACB8F2223B6EEEC00AB9529 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F2123B6EEEC00AB9529 /* AppDelegate.swift */; };
 		FACB8F2423B6EEEC00AB9529 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F2323B6EEEC00AB9529 /* SceneDelegate.swift */; };
-		FACB8F2623B6EEEC00AB9529 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F2523B6EEEC00AB9529 /* ViewController.swift */; };
+		FACB8F2623B6EEEC00AB9529 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F2523B6EEEC00AB9529 /* LoginController.swift */; };
 		FACB8F2923B6EEEC00AB9529 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACB8F2723B6EEEC00AB9529 /* Main.storyboard */; };
 		FACB8F2B23B6EEF200AB9529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACB8F2A23B6EEF200AB9529 /* Assets.xcassets */; };
 		FACB8F2E23B6EEF200AB9529 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACB8F2C23B6EEF200AB9529 /* LaunchScreen.storyboard */; };
 		FACB8F3923B6EEF200AB9529 /* ConversionCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F3823B6EEF200AB9529 /* ConversionCurrencyTests.swift */; };
 		FACB8F4423B6EEF200AB9529 /* ConversionCurrencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F4323B6EEF200AB9529 /* ConversionCurrencyUITests.swift */; };
+		FACB8F5223B6FA1400AB9529 /* ConverterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB8F5123B6FA1400AB9529 /* ConverterController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +38,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		286641E93F9D8529D0C851D3 /* Pods-ConversionCurrency.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConversionCurrency.release.xcconfig"; path = "Target Support Files/Pods-ConversionCurrency/Pods-ConversionCurrency.release.xcconfig"; sourceTree = "<group>"; };
+		6E2D05DAB9DB1234D02D4FFB /* libPods-ConversionCurrency.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ConversionCurrency.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D0357BD76E71B8DDDAC73B8 /* Pods_ConversionCurrency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConversionCurrency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0EA2C682978E23599FC580 /* Pods-ConversionCurrency.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConversionCurrency.debug.xcconfig"; path = "Target Support Files/Pods-ConversionCurrency/Pods-ConversionCurrency.debug.xcconfig"; sourceTree = "<group>"; };
+		FAB1777623B7023900EFE569 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB1777A23B7026A00EFE569 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB1777B23B7026A00EFE569 /* Pods_ConversionCurrency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ConversionCurrency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB1778223B7087A00EFE569 /* RateCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCodable.swift; sourceTree = "<group>"; };
 		FACB8F1E23B6EEEC00AB9529 /* ConversionCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConversionCurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACB8F2123B6EEEC00AB9529 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACB8F2323B6EEEC00AB9529 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FACB8F2523B6EEEC00AB9529 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FACB8F2523B6EEEC00AB9529 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		FACB8F2823B6EEEC00AB9529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FACB8F2A23B6EEF200AB9529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACB8F2D23B6EEF200AB9529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +60,7 @@
 		FACB8F3F23B6EEF200AB9529 /* ConversionCurrencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversionCurrencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACB8F4323B6EEF200AB9529 /* ConversionCurrencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionCurrencyUITests.swift; sourceTree = "<group>"; };
 		FACB8F4523B6EEF200AB9529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FACB8F5123B6FA1400AB9529 /* ConverterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD51BA0B3EB66220D8317598 /* libPods-ConversionCurrency.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +89,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BB19240A9C6DE10F1CEEC4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAB1777A23B7026A00EFE569 /* Alamofire.framework */,
+				FAB1777623B7023900EFE569 /* Alamofire.framework */,
+				7D0357BD76E71B8DDDAC73B8 /* Pods_ConversionCurrency.framework */,
+				6E2D05DAB9DB1234D02D4FFB /* libPods-ConversionCurrency.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89C3A55344D09E3F8141EE3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA0EA2C682978E23599FC580 /* Pods-ConversionCurrency.debug.xcconfig */,
+				286641E93F9D8529D0C851D3 /* Pods-ConversionCurrency.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FAB1778123B7028500EFE569 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				FAB1777B23B7026A00EFE569 /* Pods_ConversionCurrency.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		FACB8F1523B6EEEC00AB9529 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +124,9 @@
 				FACB8F3723B6EEF200AB9529 /* ConversionCurrencyTests */,
 				FACB8F4223B6EEF200AB9529 /* ConversionCurrencyUITests */,
 				FACB8F1F23B6EEEC00AB9529 /* Products */,
+				89C3A55344D09E3F8141EE3F /* Pods */,
+				4BB19240A9C6DE10F1CEEC4F /* Frameworks */,
+				FAB1778123B7028500EFE569 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +145,13 @@
 			children = (
 				FACB8F2123B6EEEC00AB9529 /* AppDelegate.swift */,
 				FACB8F2323B6EEEC00AB9529 /* SceneDelegate.swift */,
-				FACB8F2523B6EEEC00AB9529 /* ViewController.swift */,
+				FACB8F2523B6EEEC00AB9529 /* LoginController.swift */,
 				FACB8F2723B6EEEC00AB9529 /* Main.storyboard */,
 				FACB8F2A23B6EEF200AB9529 /* Assets.xcassets */,
 				FACB8F2C23B6EEF200AB9529 /* LaunchScreen.storyboard */,
 				FACB8F2F23B6EEF200AB9529 /* Info.plist */,
+				FACB8F5123B6FA1400AB9529 /* ConverterController.swift */,
+				FAB1778223B7087A00EFE569 /* RateCodable.swift */,
 			);
 			path = ConversionCurrency;
 			sourceTree = "<group>";
@@ -135,6 +181,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FACB8F4823B6EEF200AB9529 /* Build configuration list for PBXNativeTarget "ConversionCurrency" */;
 			buildPhases = (
+				60C5D674C560440D2D830701 /* [CP] Check Pods Manifest.lock */,
 				FACB8F1A23B6EEEC00AB9529 /* Sources */,
 				FACB8F1B23B6EEEC00AB9529 /* Frameworks */,
 				FACB8F1C23B6EEEC00AB9529 /* Resources */,
@@ -254,14 +301,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		60C5D674C560440D2D830701 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ConversionCurrency-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FACB8F1A23B6EEEC00AB9529 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FACB8F2623B6EEEC00AB9529 /* ViewController.swift in Sources */,
+				FACB8F5223B6FA1400AB9529 /* ConverterController.swift in Sources */,
+				FACB8F2623B6EEEC00AB9529 /* LoginController.swift in Sources */,
 				FACB8F2223B6EEEC00AB9529 /* AppDelegate.swift in Sources */,
 				FACB8F2423B6EEEC00AB9529 /* SceneDelegate.swift in Sources */,
+				FAB1778323B7087A00EFE569 /* RateCodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +506,7 @@
 		};
 		FACB8F4923B6EEF200AB9529 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA0EA2C682978E23599FC580 /* Pods-ConversionCurrency.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +525,7 @@
 		};
 		FACB8F4A23B6EEF200AB9529 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 286641E93F9D8529D0C851D3 /* Pods-ConversionCurrency.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

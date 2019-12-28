@@ -7,24 +7,40 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ConverterController: UIViewController {
-
+    
+    
+    var jsonData = Data()
+    var keys = Array<String>()
+    var values = Array<JSON>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let request = Alamofire.request("https://api.exchangeratesapi.io/latest")
+        request.responseJSON { (response) in
+            
+            let jsonString = String(data: response.data!, encoding: .utf8)!
+            self.jsonData = jsonString.data(using: .utf8)!
+            
+            do {
+                let res = try JSONDecoder().decode(Root.self, from: self.jsonData)
+                let jsonRes = res.rates
+                
+                for (key, value) in jsonRes {
+                    print("key \(key)")
+                    print("value \(value)")
+                }
+                
+            } catch {
+                print("Unexpected error: \(error).")
+            }
+            
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
+

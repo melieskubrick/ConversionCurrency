@@ -8,11 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginController: UIViewController {
+    @IBOutlet weak var btnFacebook: UIButton!
+    @IBOutlet weak var btnTwitter: UIButton!
+    @IBOutlet weak var btnGoogle: UIButton!
+    @IBOutlet weak var btnLogin: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+         layoutBtns()
+    }
+    
+    func layoutBtns() {
+        btnFacebook.layer.cornerRadius = 4
+        btnTwitter.layer.cornerRadius = 4
+        btnGoogle.layer.cornerRadius = 4
+        btnLogin.layer.cornerRadius = 4
     }
 
 
