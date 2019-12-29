@@ -10,4 +10,5 @@ import SwiftyJSON
 
 struct Root : Codable {
     let rates : JSON
+    let base : String
 }

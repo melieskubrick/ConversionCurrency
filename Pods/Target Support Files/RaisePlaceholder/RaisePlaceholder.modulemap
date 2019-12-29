@@ -1,0 +1,6 @@
+module RaisePlaceholder {
+  umbrella header "RaisePlaceholder-umbrella.h"
+
+  export *
+  module * { export * }
+}

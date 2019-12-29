@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.9.1)
+  - RaisePlaceholder (1.0.3)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - RaisePlaceholder
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - RaisePlaceholder
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  RaisePlaceholder: e77c8565f556e25659bdf1b9a77647a952b8cb70
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e650635af72625ca62a817e386e2958bbdd9fda9
+PODFILE CHECKSUM: f5abe98ab3fb60d617702028ca36c37cef7b8dbc
 
 COCOAPODS: 1.8.4
