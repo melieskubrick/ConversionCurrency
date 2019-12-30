@@ -221,6 +221,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Conversion" id="epy-at-6QD"/>
                     <connections>
+                        <outlet property="btnConvert" destination="SUr-Zo-Ml0" id="mjK-MZ-uGe"/>
+                        <outlet property="btnHistoric" destination="GV8-pg-CiN" id="Jme-2E-xdd"/>
                         <outlet property="currencyType" destination="fPS-yq-DEi" id="cDO-Tk-Mar"/>
                         <outlet property="desiredCurrency" destination="yvg-4v-Tbd" id="2Jt-1g-8tx"/>
                         <outlet property="valueOfCurrency" destination="u1I-jt-RdH" id="SPW-pm-Uiq"/>

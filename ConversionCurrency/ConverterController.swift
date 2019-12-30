@@ -15,6 +15,8 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var currencyType: UITextField!
     @IBOutlet weak var valueOfCurrency: UITextField!
     @IBOutlet weak var desiredCurrency: UITextField!
+    @IBOutlet weak var btnConvert: UIButton!
+    @IBOutlet weak var btnHistoric: UIButton!
     
     var keys = Array<String>()
     var values = Array<String>()
@@ -24,22 +26,20 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var currencyBase = Array<String>()
     var currencyToConvert = Array<String>()
     var valueToConvert = Array<String>()
-    
-    //  Loading
-    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-    let alertLoading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-    
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loading(status: "Present")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        self.showSpinner(onView: self.view)
         requestApi()
         picker()
         toolbar()
+        layoutBtns()
+    }
+    
+    func layoutBtns() {
+        btnConvert.layer.cornerRadius = 4
+        btnHistoric.layer.cornerRadius = 4
     }
     
     func picker() {
@@ -80,15 +80,6 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         valueOfCurrency.resignFirstResponder()
     }
     
-    func loading(status: String) {
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.medium
-        loadingIndicator.startAnimating();
-        
-        alertLoading.view.addSubview(loadingIndicator)
-        present(alertLoading, animated: true, completion: nil)
-    }
-    
     func requestApi() {
         let request = Alamofire.request("https://api.exchangeratesapi.io/latest")
         request.responseJSON { (response) in
@@ -96,7 +87,8 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             switch response.result {
             case .success:
                 
-                self.alertLoading.dismiss(animated: true, completion: nil)
+                self.removeSpinner()
+                
                 let jsonString = String(data: response.data!, encoding: .utf8)!
                 let jsonData = jsonString.data(using: .utf8)!
                 
@@ -161,30 +153,70 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if currencyType.text != "" && desiredCurrency.text != "" && valueOfCurrency.text != "" {
             
             let defaultValue = Double("\(jsonRes[currencyType.text!])")!
-            let valueCurrency = Double("\(valueOfCurrency.text!)")!
+            let defaultCurrency = Double("\(valueOfCurrency.text!)")!
             
             let desiredValue = Double("\(jsonRes[desiredCurrency.text!])")!
-            let valueConverted = (desiredValue / defaultValue) * valueCurrency
+            let valueConverted = (desiredValue / defaultValue) * defaultCurrency
             
             valuesConverted.append("\(valueConverted)")
             currencyBase.append("\(currencyType.text!)")
             currencyToConvert.append("\(desiredCurrency.text!)")
             valueToConvert.append("\(valueOfCurrency.text!)")
+            
+            let arr1 =  defaults.array(forKey: "valuesConverted") as! Array<String>
+            let arr2 = defaults.array(forKey: "currencyBase") as! Array<String>
+            let arr3 = defaults.array(forKey: "currencyToConvert") as! Array<String>
+            let arr4 = defaults.array(forKey: "valueToConvert") as! Array<String>
+            
+            for row in 0...arr1.count-1 {
+                valuesConverted.append(arr1[row])
+                currencyBase.append(arr2[row])
+                currencyToConvert.append(arr3[row])
+                valueToConvert.append(arr4[row])
+            }
+            
+            //  Local Storage
             defaults.set(currencyBase, forKey: "currencyBase")
             defaults.set(currencyToConvert, forKey: "currencyToConvert")
             defaults.set(valuesConverted, forKey: "valuesConverted")
             defaults.set(valueToConvert, forKey: "valueToConvert")
-            print(defaults.array(forKey: "valuesConverted") as! Array<String>)
             
             let alert = UIAlertController(title: "\(currencyType.text!) to \(desiredCurrency.text!)", message: "\(valueOfCurrency.text!) \(currencyType.text!) = \(valueConverted) \(desiredCurrency.text!)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            
         } else {
             let alert = UIAlertController(title: "Alert", message: "The above fields are required", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+        
     }
     
 }
 
+var vSpinner : UIView?
+extension UIViewController {
+    
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
+    }
+}
