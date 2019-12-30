@@ -164,16 +164,16 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             valueToConvert.append("\(valueOfCurrency.text!)")
             
             if defaults.array(forKey: "valuesConverted") as? Array<String> != nil && defaults.array(forKey: "currencyBase") as? Array<String> != nil && defaults.array(forKey: "currencyToConvert") as? Array<String> != nil && defaults.array(forKey: "valueToConvert") as? Array<String> != nil {
-            
-                let arr1 =  defaults.array(forKey: "valuesConverted") as! Array<String>
-                let arr2 = defaults.array(forKey: "currencyBase") as! Array<String>
-                let arr3 = defaults.array(forKey: "currencyToConvert") as! Array<String>
-                let arr4 = defaults.array(forKey: "valueToConvert") as! Array<String>
                 
-                valuesConverted.append(contentsOf: arr1)
-                currencyBase.append(contentsOf: arr2)
-                currencyToConvert.append(contentsOf: arr3)
-                valueToConvert.append(contentsOf: arr4)
+                valuesConverted = defaults.array(forKey: "valuesConverted") as! Array<String>
+                currencyBase = defaults.array(forKey: "currencyBase") as! Array<String>
+                currencyToConvert = defaults.array(forKey: "currencyToConvert") as! Array<String>
+                valueToConvert = defaults.array(forKey: "valueToConvert") as! Array<String>
+                
+                valuesConverted.insert("\(valueConverted)", at: 0)
+                currencyBase.insert(currencyType.text!, at: 0)
+                currencyToConvert.insert(desiredCurrency.text!, at: 0)
+                valueToConvert.insert(valueOfCurrency.text!, at: 0)
                 
             }
             
