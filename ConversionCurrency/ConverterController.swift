@@ -135,7 +135,7 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func historic(_ sender: Any) {
         
-        if defaults.array(forKey: "valuesConverted") as? Array<String> != nil && defaults.array(forKey: "currencyBase") as? Array<String> != nil && defaults.array(forKey: "currencyToConvert") as? Array<String> != nil && defaults.array(forKey: "valueToConvert") as? Array<String> != nil{
+        if defaults.array(forKey: "valuesConverted") as? Array<String> != nil && defaults.array(forKey: "currencyBase") as? Array<String> != nil && defaults.array(forKey: "currencyToConvert") as? Array<String> != nil && defaults.array(forKey: "valueToConvert") as? Array<String> != nil {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "historicNav") as! UINavigationController
@@ -163,16 +163,18 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             currencyToConvert.append("\(desiredCurrency.text!)")
             valueToConvert.append("\(valueOfCurrency.text!)")
             
-            let arr1 =  defaults.array(forKey: "valuesConverted") as! Array<String>
-            let arr2 = defaults.array(forKey: "currencyBase") as! Array<String>
-            let arr3 = defaults.array(forKey: "currencyToConvert") as! Array<String>
-            let arr4 = defaults.array(forKey: "valueToConvert") as! Array<String>
+            if defaults.array(forKey: "valuesConverted") as? Array<String> != nil && defaults.array(forKey: "currencyBase") as? Array<String> != nil && defaults.array(forKey: "currencyToConvert") as? Array<String> != nil && defaults.array(forKey: "valueToConvert") as? Array<String> != nil {
             
-            for row in 0...arr1.count-1 {
-                valuesConverted.append(arr1[row])
-                currencyBase.append(arr2[row])
-                currencyToConvert.append(arr3[row])
-                valueToConvert.append(arr4[row])
+                let arr1 =  defaults.array(forKey: "valuesConverted") as! Array<String>
+                let arr2 = defaults.array(forKey: "currencyBase") as! Array<String>
+                let arr3 = defaults.array(forKey: "currencyToConvert") as! Array<String>
+                let arr4 = defaults.array(forKey: "valueToConvert") as! Array<String>
+                
+                valuesConverted.append(contentsOf: arr1)
+                currencyBase.append(contentsOf: arr2)
+                currencyToConvert.append(contentsOf: arr3)
+                valueToConvert.append(contentsOf: arr4)
+                
             }
             
             //  Local Storage
