@@ -15,18 +15,21 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var currencyType: UITextField!
     @IBOutlet weak var valueOfCurrency: UITextField!
     @IBOutlet weak var desiredCurrency: UITextField!
-    @IBOutlet weak var valueConverted: UILabel!
     
     var keys = Array<String>()
     var values = Array<String>()
-    let thePicker = UIPickerView()
-    var positionRate = Int()
+    var thePicker = UIPickerView()
+    var jsonRes = JSON()
+    var valuesConverted = Array<String>()
+    var currencyBase = Array<String>()
+    var currencyToConvert = Array<String>()
+    var valueToConvert = Array<String>()
     
+    //  Loading
     let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
     let alertLoading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
-    var base = String()
-    var jsonRes = JSON()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,7 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func viewDidAppear(_ animated: Bool) {
         requestApi()
         picker()
+        toolbar()
     }
     
     func picker() {
@@ -44,33 +48,61 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         thePicker.delegate = self
     }
     
-    func loading(status: String) {
+    func toolbar() {
+        // ToolBar
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.sizeToFit()
         
-
+        // Adding Button ToolBar
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: #selector(cancelClick))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        currencyType.inputAccessoryView = toolBar
+        desiredCurrency.inputAccessoryView = toolBar
+        valueOfCurrency.inputAccessoryView = toolBar
+    }
+    
+    @objc func doneClick() {
+        currencyType.resignFirstResponder()
+        desiredCurrency.resignFirstResponder()
+        valueOfCurrency.resignFirstResponder()
+    }
+    
+    @objc func cancelClick() {
+        currencyType.resignFirstResponder()
+        desiredCurrency.resignFirstResponder()
+        valueOfCurrency.resignFirstResponder()
+    }
+    
+    func loading(status: String) {
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating();
-
+        
         alertLoading.view.addSubview(loadingIndicator)
         present(alertLoading, animated: true, completion: nil)
     }
     
     func requestApi() {
-        let request = Alamofire.request("https://api.exchangeratesapi.io/latest\(base)")
+        let request = Alamofire.request("https://api.exchangeratesapi.io/latest")
         request.responseJSON { (response) in
             
             switch response.result {
             case .success:
                 
                 self.alertLoading.dismiss(animated: true, completion: nil)
-                
                 let jsonString = String(data: response.data!, encoding: .utf8)!
                 let jsonData = jsonString.data(using: .utf8)!
                 
                 do {
                     let res = try JSONDecoder().decode(Root.self, from: jsonData)
                     self.jsonRes = res.rates
-                    self.base = res.base
                     
                     for (key, value) in self.jsonRes {
                         self.keys.append(key)
@@ -86,7 +118,6 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             case .failure:
                 print("Request failed")
             }
-            
         }
     }
     
@@ -103,29 +134,56 @@ class ConverterController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         if self.currencyType.isEditing == true {
             currencyType.text = keys[row]
         } else if self.desiredCurrency.isEditing == true {
             desiredCurrency.text = keys[row]
-            positionRate = row
+        }
+    }
+    
+    @IBAction func historic(_ sender: Any) {
+        
+        if defaults.array(forKey: "valuesConverted") as? Array<String> != nil && defaults.array(forKey: "currencyBase") as? Array<String> != nil && defaults.array(forKey: "currencyToConvert") as? Array<String> != nil && defaults.array(forKey: "valueToConvert") as? Array<String> != nil{
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "historicNav") as! UINavigationController
+            self.show(controller, sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "You haven't conversion history", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
-        
-        print(keys[row])
     }
     
     @IBAction func convert(sender: UIButton){
         
-        let defaultValue = Double("\(jsonRes[currencyType.text!])")!
-        let valueCurrency = Double("\(valueOfCurrency.text!)")!
-        
-        let desiredValue = Double("\(jsonRes[desiredCurrency.text!])")!
-        let valueConverted = (desiredValue / defaultValue) * valueCurrency
-        
-        let alert = UIAlertController(title: "Converted", message: "\(valueConverted)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        if currencyType.text != "" && desiredCurrency.text != "" && valueOfCurrency.text != "" {
+            
+            let defaultValue = Double("\(jsonRes[currencyType.text!])")!
+            let valueCurrency = Double("\(valueOfCurrency.text!)")!
+            
+            let desiredValue = Double("\(jsonRes[desiredCurrency.text!])")!
+            let valueConverted = (desiredValue / defaultValue) * valueCurrency
+            
+            valuesConverted.append("\(valueConverted)")
+            currencyBase.append("\(currencyType.text!)")
+            currencyToConvert.append("\(desiredCurrency.text!)")
+            valueToConvert.append("\(valueOfCurrency.text!)")
+            defaults.set(currencyBase, forKey: "currencyBase")
+            defaults.set(currencyToConvert, forKey: "currencyToConvert")
+            defaults.set(valuesConverted, forKey: "valuesConverted")
+            defaults.set(valueToConvert, forKey: "valueToConvert")
+            print(defaults.array(forKey: "valuesConverted") as! Array<String>)
+            
+            let alert = UIAlertController(title: "\(currencyType.text!) to \(desiredCurrency.text!)", message: "\(valueOfCurrency.text!) \(currencyType.text!) = \(valueConverted) \(desiredCurrency.text!)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "The above fields are required", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 }
